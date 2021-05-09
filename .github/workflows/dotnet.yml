@@ -21,3 +21,19 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+    - name: Publish Website
+      run: dotnet publish --output output
+
+    - name: Get branch names
+      id: branch-name
+      uses: tj-actions/branch-names@v4
+
+    - name: Create a Build Artifact
+      uses: actions/upload-artifact@v2.2.3
+      with:
+        # Artifact name
+        name: artifact-${{ steps.branch-name.outputs.tag }}-${{ github.job_id }}-${{ github.sha }} # optional, default is artifact
+        # A file, directory or wildcard pattern that describes what to upload
+        path: output
+        retention-days: 3
+        
