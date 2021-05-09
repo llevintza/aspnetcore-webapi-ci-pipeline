@@ -32,7 +32,7 @@ jobs:
       uses: actions/upload-artifact@v2.2.3
       with:
         # Artifact name
-        name: artifact-${{ steps.branch-name.outputs.head_ref_branch }}-${{ github.job_id }}-${{ github.sha }} # optional, default is artifact
+        name: artifact-${{ steps.branch-name.outputs.tag }}-${{ github.job_id }}-${{ github.sha }} # optional, default is artifact
         # A file, directory or wildcard pattern that describes what to upload
         path: output
         retention-days: 3
